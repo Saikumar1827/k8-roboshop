@@ -11,7 +11,7 @@ metadata:
 spec:
   replicas: 1
   selector:
-  # these labels are used to select pods
+    # these labels are used to select pods
     matchLabels:
       project: roboshop
       component: mongodb
@@ -28,12 +28,12 @@ spec:
       - name: mongodb
         image: joindevops/mongodb:v1 
         imagePullPolicy: Always  
-        readinessprobe:
+        readinessProbe:
           tcpSocket:
             port: 27017 
           initialDelaySeconds: 10
           periodSeconds: 10
-        livenessprobe:
+        livenessProbe:
           tcpSocket:
             port: 27017
           initialDelaySeconds: 5
