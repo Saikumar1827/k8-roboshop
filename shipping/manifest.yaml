@@ -120,14 +120,14 @@ spec:
           httpGet:
             path: /health
             port: liveness-port
-          failureThreshold: 1
-          periodSeconds: 20
+          failureThreshold: 20
+          periodSeconds: 10
         livenessProbe:
           httpGet:
             path: /health
             port: liveness-port
-          failureThreshold: 1
-          periodSeconds: 30
+          failureThreshold: 20
+          periodSeconds: 10
 ---
 apiVersion: v1
 kind: Service
