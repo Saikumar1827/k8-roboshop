@@ -43,18 +43,31 @@ spec:
         ports:
         - name: liveness-port
           containerPort: 8080
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: liveness-port
-          failureThreshold: 1
-          periodSeconds: 15
+         # FIXED RESOURCE LIMITS (Required for t3.micro)
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+
+        # FIXED PROBES (Correct port)
         livenessProbe:
           httpGet:
             path: /health
-            port: liveness-port
-          failureThreshold: 1
-          periodSeconds: 15
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          failureThreshold: 3
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          failureThreshold: 3
 ---
 apiVersion: v1
 kind: Service
