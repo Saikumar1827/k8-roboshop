@@ -120,13 +120,13 @@ spec:
           httpGet:
             path: /health
             port: liveness-port
-          failureThreshold: 20
+          failureThreshold: 20  #initial dealy seconds
           periodSeconds: 10
         livenessProbe:
           httpGet:
             path: /health
             port: liveness-port
-          failureThreshold: 20
+          failureThreshold: 20  #initial dealy seconds
           periodSeconds: 10
 ---
 apiVersion: v1
